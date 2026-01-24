@@ -2,11 +2,23 @@
   "name": "th26",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "smoke:nessie": "tsx apps/server/scripts/nessie_smoke_test.ts",
+    "seed:nessie": "tsx apps/server/scripts/nessie_seed_demo.ts",
+    "seed:nessie:data": "tsx apps/server/scripts/nessie_seed_data.ts",
+    "prepare:nessie:safe-ids": "tsx apps/server/scripts/nessie_prepare_safe_ids.ts"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "dependencies": {
+    "dotenv": "^17.2.3",
     "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.5",
+    "tsx": "^4.21.0"
   }
 }
