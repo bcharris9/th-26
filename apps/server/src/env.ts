@@ -23,6 +23,7 @@ const envSchema = z.object({
   GEMINI_API_KEY: z.string().min(1, "GEMINI_API_KEY is required"),
   ELEVENLABS_API_KEY: z.string().min(1, "ELEVENLABS_API_KEY is required"),
   NESSIE_API_KEY: z.string().min(1, "NESSIE_API_KEY is required"),
+  CONFIRMATION_SECRET: z.string().min(1, "CONFIRMATION_SECRET is required"),
   DEMO_MODE: booleanFromEnv.optional(),
   DEMO_ACCOUNT_ID: z.string().min(1).optional(),
 });
