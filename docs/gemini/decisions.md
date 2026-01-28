@@ -82,3 +82,16 @@
   - Added `apps/web/src/app/layout.tsx`, `apps/web/src/app/page.tsx`, and `apps/web/src/app/globals.css`.
 - Open questions:
   - Confirm whether to add a separate assertive aria-live region for high-risk alerts.
+
+## Step 07
+
+- Date/time: 2026-01-28 13:44:28 -0600
+- Step name: 07_demo_mode
+- Decision summary (3 bullets max):
+  - Added deterministic demo data for grocery spend, electric bill, and scam trigger flows.
+  - Added a demo snapshot helper gated behind DEMO_MODE.
+  - Added a print script that verifies scam guard returns HIGH risk for the demo trigger.
+- Implementation notes:
+  - Added `apps/server/src/demo/demoData.ts`, `apps/server/src/demo/demoRouter.ts`, and `apps/server/scripts/demo_print.ts`.
+- Open questions:
+  - Confirm where demo snapshot data should be wired into API responses.
