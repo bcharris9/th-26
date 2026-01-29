@@ -17,7 +17,7 @@ const baseInput = {
   amount: 50,
 };
 
-const fixedTimestamp = "2026-01-24T00:00:00.000Z";
+const fixedTimestamp = new Date().toISOString();
 
 const run = () => {
   resetSessionStoreForTests();
@@ -83,6 +83,7 @@ const run = () => {
     actionKind: baseInput.actionKind,
     targetId: baseInput.targetId,
     amount: baseInput.amount,
+    now: new Date(new Date(fixedTimestamp).getTime() + 1000).toISOString(),
   });
   assert.equal(firstConsume.valid, true);
 

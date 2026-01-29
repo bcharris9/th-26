@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "test": "tsx apps/server/src/actions/actionSummary.test.ts && tsx apps/server/src/scamGuard/scamGuard.test.ts && tsx apps/server/src/policy/confirmationToken.test.ts && tsx apps/server/scripts/demo_print.ts",
     "smoke:nessie": "tsx apps/server/scripts/nessie_smoke_test.ts",
     "seed:nessie": "tsx apps/server/scripts/nessie_seed_demo.ts",
     "seed:nessie:data": "tsx apps/server/scripts/nessie_seed_data.ts",
