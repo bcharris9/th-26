@@ -20,8 +20,12 @@ const booleanFromEnv = z.preprocess((value) => {
 }, z.boolean());
 
 const envSchema = z.object({
-  GEMINI_API_KEY: z.string().min(1, "GEMINI_API_KEY is required"),
-  ELEVENLABS_API_KEY: z.string().min(1, "ELEVENLABS_API_KEY is required"),
+  GEMINI_API_KEY: z.string().min(1).optional(),
+  GEMINI_MODEL: z.string().min(1).optional(),
+  ELEVENLABS_API_KEY: z.string().min(1).optional(),
+  ELEVENLABS_VOICE_ID: z.string().min(1).optional(),
+  ELEVENLABS_TTS_MODEL: z.string().min(1).optional(),
+  ELEVENLABS_STT_MODEL: z.string().min(1).optional(),
   NESSIE_API_KEY: z.string().min(1, "NESSIE_API_KEY is required"),
   CONFIRMATION_SECRET: z.string().min(1, "CONFIRMATION_SECRET is required"),
   DEMO_MODE: booleanFromEnv.optional(),
@@ -38,3 +42,12 @@ if (!parsed.success) {
 }
 
 export const env = parsed.data;
+
+if (!env.DEMO_MODE) {
+  if (!env.GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY is required when DEMO_MODE is false.");
+  }
+  if (!env.ELEVENLABS_API_KEY) {
+    throw new Error("ELEVENLABS_API_KEY is required when DEMO_MODE is false.");
+  }
+}

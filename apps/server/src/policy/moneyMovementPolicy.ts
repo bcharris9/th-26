@@ -45,6 +45,8 @@ export type BillPaymentPolicyInput = {
 export type ProposedPolicyResult = {
   proposalId: string;
   riskLevel: PolicyRiskLevel;
+  riskScore: number;
+  riskReasons: string[];
   confirmation: PolicyConfirmation;
   assistantLines: string[];
   confirmationToken?: string;
@@ -173,6 +175,8 @@ export const proposeTransferWithPolicy = (input: TransferPolicyInput): ProposedP
     return {
       proposalId,
       riskLevel,
+      riskScore: scamResult.score,
+      riskReasons: scamResult.reasons,
       confirmation,
       assistantLines: HIGH_RISK_SCRIPT.assistantLines,
     };
@@ -189,6 +193,8 @@ export const proposeTransferWithPolicy = (input: TransferPolicyInput): ProposedP
   return {
     proposalId,
     riskLevel,
+    riskScore: scamResult.score,
+    riskReasons: scamResult.reasons,
     confirmation,
     assistantLines: MEDIUM_RISK_SCRIPT(input.amount, input.payeeName).assistantLines,
     confirmationToken,
@@ -223,6 +229,8 @@ export const proposeBillPaymentWithPolicy = (input: BillPaymentPolicyInput): Pro
     return {
       proposalId,
       riskLevel,
+      riskScore: scamResult.score,
+      riskReasons: scamResult.reasons,
       confirmation,
       assistantLines: HIGH_RISK_SCRIPT.assistantLines,
     };
@@ -239,6 +247,8 @@ export const proposeBillPaymentWithPolicy = (input: BillPaymentPolicyInput): Pro
   return {
     proposalId,
     riskLevel,
+    riskScore: scamResult.score,
+    riskReasons: scamResult.reasons,
     confirmation,
     assistantLines: BILL_PAYMENT_SCRIPT(
       input.billerName,

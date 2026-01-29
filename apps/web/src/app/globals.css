@@ -21,6 +21,23 @@ body {
   color: var(--ink);
 }
 
+body[data-large-text="true"] {
+  font-size: 18px;
+}
+
+body[data-large-text="true"] .panel-text {
+  font-size: 26px;
+}
+
+body[data-large-text="true"] .assistant {
+  font-size: 22px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .shell-bg {
   min-height: 100vh;
   background: radial-gradient(circle at top left, #f1e6da 0%, #f9f6f1 45%, #efe8df 100%);
@@ -94,6 +111,27 @@ body {
   text-align: right;
 }
 
+.toggle-button {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid #d2c6b5;
+  background: #fff8f0;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status-chip {
+  margin-top: 16px;
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 2px solid #d8c9b8;
+  font-weight: 600;
+  font-size: 16px;
+  background: #fdf7ef;
+}
+
 .shell-grid {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
@@ -147,6 +185,72 @@ body {
   margin-top: 14px;
   font-size: 18px;
   color: var(--ink-muted);
+}
+
+.record-controls {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button {
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+.secondary-button {
+  background: #f4eee6;
+  color: var(--ink);
+  border: 2px solid #e4d7c8;
+}
+
+.ghost-button {
+  background: transparent;
+  color: var(--ink-muted);
+  border: 2px dashed #d0c1b2;
+}
+
+.error-text {
+  margin-top: 12px;
+  color: var(--alert);
+  font-weight: 600;
+}
+
+.text-fallback {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--ink-muted);
+}
+
+.text-input-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.text-input-row input {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 2px solid #e4d7c8;
+  font-size: 16px;
+  background: #fffdf9;
 }
 
 .panel-judge {
@@ -206,6 +310,7 @@ body {
   background: #f2f2f2;
   padding: 10px 12px;
   border-radius: 12px;
+  white-space: pre-wrap;
 }
 
 .judge-reasons ul {

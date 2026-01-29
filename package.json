@@ -6,7 +6,9 @@
     "smoke:nessie": "tsx apps/server/scripts/nessie_smoke_test.ts",
     "seed:nessie": "tsx apps/server/scripts/nessie_seed_demo.ts",
     "seed:nessie:data": "tsx apps/server/scripts/nessie_seed_data.ts",
-    "prepare:nessie:safe-ids": "tsx apps/server/scripts/nessie_prepare_safe_ids.ts"
+    "prepare:nessie:safe-ids": "tsx apps/server/scripts/nessie_prepare_safe_ids.ts",
+    "dev:server": "tsx apps/server/src/server.ts",
+    "dev:web": "npm run dev --workspace @th26/web"
   },
   "workspaces": [
     "apps/*",
