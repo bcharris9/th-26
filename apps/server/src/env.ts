@@ -28,6 +28,7 @@ const envSchema = z.object({
   ELEVENLABS_STT_MODEL: z.string().min(1).optional(),
   NESSIE_API_KEY: z.string().min(1, "NESSIE_API_KEY is required"),
   CONFIRMATION_SECRET: z.string().min(1, "CONFIRMATION_SECRET is required"),
+  PYTHON_AI_BASE: z.string().min(1).optional(),
   DEMO_MODE: booleanFromEnv.optional(),
   DEMO_ACCOUNT_ID: z.string().min(1).optional(),
 });

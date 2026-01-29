@@ -70,3 +70,8 @@ Web client
 - NEXT_PUBLIC_API_BASE (optional)
   - Base URL for the API server (defaults to `http://localhost:8787`).
   - Used in `apps/web/src/lib/api.ts`.
+
+Python microservice (optional)
+- PYTHON_AI_BASE
+  - Base URL for the Blake Python service (Gemini + ElevenLabs).
+  - Used in `apps/server/src/gemini/geminiClient.ts` and `apps/server/src/server.ts`.

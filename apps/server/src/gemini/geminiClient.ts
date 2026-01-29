@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { env } from "../env";
+import { requestPythonToolCall } from "../python/pythonClient";
 import { summarizeProposedAction } from "../actions/actionSummary";
 import type { ProposedAction } from "../actions/actionTypes";
 
@@ -215,6 +216,17 @@ export const proposeActionFromGemini = async (
   const functionCall = useMock
     ? mockGeminiAction(transcript, accountId)
     : await (async () => {
+        if (env.PYTHON_AI_BASE) {
+          const result = await requestPythonToolCall(transcript);
+          if (result?.name) {
+            return { name: result.name, args: result.args ?? {} };
+          }
+          if (env.DEMO_MODE === true) {
+            return mockGeminiAction(transcript, accountId);
+          }
+          throw new Error("Python Gemini response missing tool call.");
+        }
+
         if (!env.GEMINI_API_KEY) {
           throw new Error("GEMINI_API_KEY is required.");
         }

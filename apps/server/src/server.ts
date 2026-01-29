@@ -5,6 +5,8 @@ import { streamTTS } from "./elevenlabs/tts";
 import { handleVoiceFlow } from "./voice/voiceHandler";
 import { demoMode } from "./config/demoConfig";
 import { getDemoSnapshot } from "./demo/demoRouter";
+import { requestPythonTts } from "./python/pythonClient";
+import { env } from "./env";
 
 type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
 
@@ -100,7 +102,9 @@ const server = http.createServer(async (req, res) => {
         sendJson(res, 400, { error: "text query param is required." });
         return;
       }
-      const upstream = await streamTTS(text);
+      const upstream = env.PYTHON_AI_BASE
+        ? await requestPythonTts(text)
+        : await streamTTS(text);
       res.writeHead(200, {
         "Content-Type": upstream.headers.get("Content-Type") ?? "audio/mpeg",
         "Cache-Control": "no-store",
